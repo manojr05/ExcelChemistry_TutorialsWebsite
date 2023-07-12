@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" th:href="@{css/registerStyle.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="shadow">
+        <div class="image">
+            <h3>Register<br><span>User</span></h3>
+        </div>
+        <form action="registerUser" method="post" onsubmit="return validateForm()">
+        <div class="form-div">
+            <div class="outer">
+                <div class="inner">
+                    <label for="firstName">Full Name</label><br>
+                    <input type="text" name="name" placeholder="Enter your full name" id="">
+                </div>
+                <div class="inner">
+                    <label for="lastName">Education</label><br>
+                    <select name="education">
+                        <option value="" disabled selected>Please select</option>
+                        <option value="8th">8th</option>
+                        <option value="9th">9th</option>
+                        <option value="10th">10th</option>
+                        <option value="11th">11th</option>
+                        <option value="12th">12th</option>
+                    </select>
+                </div>
+            </div>
+            <div class="outer">
+                <div class="inner">
+                    <label for="email">Email</label><br>
+                    <input type="email" name="email" required placeholder="Enter email">
+                </div>
+                <div class="inner">
+                    <label for="phone">Phone</label><br>
+                    <input type="number" name="phone" required placeholder="Enter phone number">
+                </div>
+            </div>
+            <div class="outer">
+                <div class="inner">
+                    <label for="city">Date of Birth</label><br>
+                    <input type="date" name="date" id="date" required placeholder="Enter your date of birth">
+                </div>
+                <div class="inner">
+                    <label for="lastName">State</label><br>
+                    <input type="text" name="state" required placeholder="Enter your state">
+                </div>
+            </div>
+            <div class="outer">
+                <div class="inner">
+                    <label for="firstName">Password</label><br>
+                    <input type="password" name="password" id="password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" title="Password must contain at least 1 uppercase letter, 1 special character and 1 number" placeholder="Enter password">
+                </div>
+                <div class="inner">
+                    <label for="lastName">Confirm Password</label><br>
+                    <input type="password" name="password1" id="confirmPassword" required placeholder="Confirm password">
+                </div>
+            </div>
+            <div class="gender">
+                <h4>Gender</h4>
+                <label for="male">
+                    <input type="radio" value="male" name="gender" required id="male">
+                    Male
+                  </label>
+                  
+                  <label for="female">
+                    <input type="radio" value="female" name="gender" required id="female">
+                    Female
+                  </label>
+                  
+                  <label for="others">
+                    <input type="radio" value="others" name="gender" required id="others">
+                    Others
+                  </label>
+                  
+                  <label for="na">
+                    <input type="radio" value="NA" name="gender" required id="na">
+                    Prefer Not to Say
+                  </label>
+                  
+            </div>
+            <button type="submit">Next Step</button>
+            <h5>ALready have an account? <a href="login">Sign In</a></h5>
+        </div>
+        </div>
+        </form>
+    </div>
+    
+    <div id="toastbox"></div>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var alertMessage = /*[[${alert}]]*/ '';
+
+        if (alertMessage) {
+            var toastBox = document.getElementById('toastbox');
+
+            function showToast(msg) {
+                var toast = document.createElement('div');
+                toast.classList.add('toast');
+                toast.innerHTML = msg;
+                toastBox.appendChild(toast);
+
+                if (msg.includes('Error')) {
+                    toast.classList.add('error');
+                    toast.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> ' + msg;
+                } else if (msg.includes('Invalid')) {
+                    toast.classList.add('invalid');
+                    toast.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> ' + msg;
+                } else if (msg.includes('Success')) {
+                    toast.classList.add('success');
+                    toast.innerHTML = '<i class="fa-solid fa-circle-check"></i> ' + msg;
+                }
+
+                setTimeout(function() {
+                    toast.remove();
+                }, 6000);
+            }
+
+            showToast(alertMessage);
+        }
+        /*]]>*/
+    </script>
+    <script src="https://kit.fontawesome.com/b34b52f001.js" crossorigin="anonymous"></script>
+    <script th:src="@{/js/registerScript.js}"></script>
+</body>
+</html>

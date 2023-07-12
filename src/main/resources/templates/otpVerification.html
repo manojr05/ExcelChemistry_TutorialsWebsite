@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification</title>
+    <link rel="stylesheet" th:href="@{css/otpVerificationStyle.css}">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="shadow">
+            <div class="image">
+                <h4>Excel Chemistry</h4>
+                <div class="texts">
+                    <h5>Nice to see you</h5>
+                    <h2>Welcome</h2>
+                    <div class="underline"></div>
+                </div>
+            </div>
+            <div class="form-div">
+                <form action="verifyEmail" method="post">
+                    <h3>Email Verification</h3>
+                    <input type="number" name="userOtp" placeholder="Enter OTP">
+                    <button type="submit">REGISTER</button><br>
+                    <div class="center">
+                        <a href="resendOtp">Resend</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div id="toastbox"></div>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var alertMessage = /*[[${alert}]]*/ '';
+
+        if (alertMessage) {
+            var toastBox = document.getElementById('toastbox');
+
+            function showToast(msg) {
+                var toast = document.createElement('div');
+                toast.classList.add('toast');
+                toast.innerHTML = msg;
+                toastBox.appendChild(toast);
+
+                if (msg.includes('Error')) {
+                    toast.classList.add('error');
+                    toast.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> ' + msg;
+                } else if (msg.includes('Invalid')) {
+                    toast.classList.add('invalid');
+                    toast.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> ' + msg;
+                } else if (msg.includes('Success')) {
+                    toast.classList.add('success');
+                    toast.innerHTML = '<i class="fa-solid fa-circle-check"></i> ' + msg;
+                }
+
+                setTimeout(function() {
+                    toast.remove();
+                }, 6000);
+            }
+
+            showToast(alertMessage);
+        }
+        /*]]>*/
+    </script>
+    <script src="https://kit.fontawesome.com/b34b52f001.js" crossorigin="anonymous"></script>
+</body>
+</html>
