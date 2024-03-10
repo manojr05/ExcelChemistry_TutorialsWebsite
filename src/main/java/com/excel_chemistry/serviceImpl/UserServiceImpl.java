@@ -13,7 +13,6 @@ import com.excel_chemistry.service.UserService;
 import jakarta.servlet.http.HttpSession;
 
 @Service
-@Component
 public class UserServiceImpl implements UserService {
 
 	@Autowired
@@ -165,7 +164,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public ModelAndView resetPassword(String password, HttpSession session) {
-		ModelAndView andView=new ModelAndView("login");
+		ModelAndView andView = new ModelAndView("login");
 		User user = (User) session.getAttribute("userObject");
 		user.setPassword(password);
 		userRepository.save(user);
