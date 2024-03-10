@@ -13,6 +13,7 @@ import com.excel_chemistry.service.UserService;
 import jakarta.servlet.http.HttpSession;
 
 @Service
+@Component
 public class UserServiceImpl implements UserService {
 
 	@Autowired
